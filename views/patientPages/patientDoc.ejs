@@ -1,0 +1,75 @@
+<%- include('../layouts/partials/messages.ejs') %>
+    <div class="row" style="margin-top: 20px">
+        <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate id="demo">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-body shadow">
+                    <h2 class="text-center mb-3"><i class="bi bi-box-arrow-in-right"></i> &nbsp;Patient Documents </h2>
+
+                    <div class="row g-2 mt-4" style="max-width: 100%">
+                        <div class="col">
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input autofocus type="text" id="id" name="id" class="form-control"
+                                            value="<%= typeof id != 'undefined' ? id : '' %>" hidden />
+                                        <select class="form-select mb-2" id="patientID" name="patientID" required>
+                                            <option selected disabled value="">select</option>
+                                            <% patientData.forEach(function(type) {if (type.isActive===1) { %>
+                                                <option value="<%= type.id %>" <%=selectedPatientData==type.id
+                                                    ? 'selected' : '' %>><%= type.name %>
+                                                </option>
+                                                <% }}) %>
+                                        </select>
+                                        <label for="patientID">Patient Id:</label>
+                                        <div class="invalid-feedback">patient type is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" name="docName" id="docName"
+                                            placeholder="Docs Name"
+                                            value="<%= typeof rows?.docName != 'undefined' ? rows?.docName : '' %>">
+                                        <label for="docName">Document name</label>
+                                        <div class="invalid-feedback">Document Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <% if (img===null ) { %>
+                                            <input type="file" class="form-control" name="docImage" id="docImage"
+                                                placeholder="Select Picture" required accept="image/*"
+                                                onchange="previewImage(`docImage`, `show_img`)" />
+                                            <div class="invalid-feedback">Only allows images less than 2MB in size.
+                                            </div>
+                                            <% } else { %>
+                                                <input type="file" class="form-control" name="docImage" id="docImage"
+                                                    placeholder="Select Picture" accept="image/*"
+                                                    onchange="previewImage(`docImage`, `show_img`)"
+                                                    onchange="checkFileSize(this, `2MB`)" />
+                                                <% } %>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card mx-auto" style="width: 8.5rem; height: 7.8rem">
+                                <img id="show_img" class="card-img-top" alt="picture" style="height: 100%; width: 100%"
+                                    src="/patientDocuments/<%= img %>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-block bg-primary" name="action" value="save">Save</button>
+                        <button type="reset" class="btn btn-block bg-warning">Clear</button>
+                        <a href="javascript:history.back()" type="submit" class="btn btn-secondary">Back</a>
+
+                    </div>
+        </form>
+    </div>
+    </div>
+    </div>

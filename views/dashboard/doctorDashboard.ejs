@@ -1,0 +1,33 @@
+<%- include('../layouts/partials/messages.ejs') %>
+  <div class="container">
+    <h3 class="display-6">Welcome, <span style="text-transform: uppercase; font-weight:350;">
+        <%= name %>
+      </span></h3>
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <div class="card dashboard-card mt-5 border-2">
+          <div class="card-body">
+            <h5 class="display-6 fs-1">
+              <%=data %> <span class="display-6 fs-4" style="color: #333">Registered
+                  Prescriptions</span>
+            </h5>
+            <a href="/prescriptions/register" class="btn btn-secondary my-1">Add</a>
+            <a href="prescriptions/prescriptionsReport" class="btn btn-secondary my-1">Reports</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card dashboard-card mt-5 border-2">
+          <div class="card-body">
+            <h5 class="display-6 fs-1">
+              <%=symptoms %> <span class="display-6 fs-4" style="color: #333">Registered
+                  Symptoms</span>
+            </h5>
+            <a href="/symptoms/register" class="btn btn-secondary my-1">Add</a>
+            <a href="symptoms/symptomsReport" class="btn btn-secondary my-1">Reports</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

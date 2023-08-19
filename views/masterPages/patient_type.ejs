@@ -1,0 +1,141 @@
+<%- include('../layouts/partials/messages.ejs') %>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-10 mx-auto">
+      <div class="card card-body shadow">
+        <h2 class="text-center mb-3">
+          <i class="bi bi-box-arrow-in-right"></i>Patient Type Master
+        </h2>
+        <form class="needs-validation" action="/patient_type" method="POST" novalidate id="demo">
+          <div class="form-floating mb-4">
+            <input autofocus type="text" id="id" name="id" class="form-control" hidden />
+            <input autofocus type="text" id="type_code" name="typeCode" class="form-control" placeholder="Patient Type"
+              value="<%= typeof typeCode != 'undefined' ? typeCode : '' %>" required />
+            <label class="form-label" for="patient_type">Patient Type Name</label>
+            <div class="invalid-feedback">Please enter a patient type name</div>
+          </div>
+          <div class="form-check mt-2">
+
+            <label class="form-check-label" for="is_Active">
+              Active ?
+            </label>
+            <input class="form-check-input is_Active" type="checkbox" value="1" id="is_Active" onclick="btnCheck()"
+              name="is_Active" <%=userData.isActive ? "checked" : "" %>>
+            <div class="invalid-feedback">Please select Check box</div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-block bg-primary">Save</button>
+            <button type="reset" class="btn btn-block bg-warning">Clear</button>
+            <a href="javascript:history.back()" type="submit" class="btn btn-secondary">Back</a>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- table -->
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-10 mx-auto">
+      <div class="card card-body" style="height: 100%">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="
+          position: relative;
+
+          overflow: auto;
+          display: block;
+        ">
+          <nav class="navbar navbar-light ">
+            <div class="container-fluid">
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a href="javascript:history.back()" type="submit" class="btn btn-secondary"><i
+                    class="bi bi-arrow-left"></i></a>
+                <button id="export" class="btn btn-primary"> <i class="bi bi-download"></i>
+
+                </button>
+
+              </div>
+
+              <div class="d-flex">
+                <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
+              </div>
+            </div>
+          </nav>
+          <table class="table table-bordered border-dark table-hover text-center" id="table">
+
+            <thead class="text-center">
+              <tr>
+                <!-- <th>S.N</th> -->
+                <th>Id</th>
+                <th>Patient Type Name</th>
+                <th>Active</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% userData.reverse() %>
+
+                <% if(userData.length!=0) {var i=1; userData.forEach(function(data){ %>
+
+                  <tr id="regrowdata" class="text-center">
+
+                    <td>
+                      <%=data.id %>
+                    </td>
+                    <td>
+                      <%=data.type_code %>
+                    </td>
+                    <td class="text-center">
+                      <input class="form-check-input" type="checkbox" value="" id="isactive" <%=data.isActive
+                        ? "checked" : "" %> disabled>
+                    </td>
+                    <td>
+                      <button class="btn btn-success btn-sm" id="edit" onclick="editPatientTypeRow(this);"
+                        style="width: 25px;padding: 2px;">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<%= data.id %>" style="width: 25px;padding: 2px;">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <!-- Modal -->
+                      <div class="modal fade" id="deleteModal<%= data.id %>" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel">Delete ?
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <h6 class="modal-body">
+                              Are you sure you want to delete <%= data.type_code%> ?
+                            </h6>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <form action="/patient_type/<%= data.id%>/delete" method="post">
+                                <button type="submit" class="btn btn-danger" id="delete">
+                                  Delete
+                                </button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+
+                  </tr>
+
+            </tbody>
+            <% i++; }) %>
+              <% } else{ %>
+                <tr class="text-center " id="noRecordFoundRow">
+                  <td colspan="17">No Record Found</td>
+                </tr>
+                <% } %>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>

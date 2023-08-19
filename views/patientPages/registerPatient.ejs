@@ -1,0 +1,561 @@
+<%- include('../layouts/partials/messages.ejs') %>
+  <div class="container ">
+    <!-- <form class="needs-validation" novalidate  enctype="multipart/form-data"> -->
+
+    <div class="row" style="margin-top: 20px">
+      <form class="needs-validation" enctype="multipart/form-data" method="post" novalidate id="demo">
+        <div class="col-md-12 mx-auto">
+          <div class="card card-body shadow">
+            <h2 class="text-center mb-3"><i class="bi bi-box-arrow-in-right"></i> &nbsp;Patient Registration Form</h2>
+
+            <div class="row g-2 mt-4" style="max-width: 100%">
+              <div class="col-md-12">
+                <div class="row g-2">
+                  <!-- ************************************************ -->
+                  <div class="col mt-2">
+                    <h5>PERSONAL DETAILS</h5>
+                  </div>
+                  <!-- <div class="row g-2 mt-2" style="max-width: 100%"> -->
+                  <div class="row g-2 mt-4" style="max-width: 100%">
+                    <div class="col-md-10">
+                      <div class="row g-3">
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <select required aria-required="true" class="form-select mb-2" id="patient_type_id"
+                              name="patient_type_id">
+                              <option selected disabled value="">select</option>
+
+                              <% patientTypes.forEach(function(type) {if (type.isActive===1) {%>
+                                <option value="<%= type.id %>" <%=selectedPatientType==type.id ? 'selected' : '' %>>
+                                  <%= type.type_code %>
+                                </option>
+                                <% }}) %>
+                            </select>
+                            <label for="patient_type_id">Patient Type:</label>
+                            <div class="invalid-feedback">patient type is required</div>
+                          </div>
+                        </div>
+                        <!-- disabled -->
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <input type="date" class="form-control" name="reg_date" id="reg_date"
+                              value="<%= typeof rows?.reg_date != 'undefined' ? rows?.reg_date : new Date().toISOString().substr(0, 10) %>"
+                              max="<%= new Date().toISOString().substr(0, 10) %>" />
+                            <label for="reg_date">Date:</label>
+                            <div class="invalid-feedback">Please fill date..</div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <!-- disabled -->
+                            <input type="text " name="id" id="id " hidden>
+                            <input type="text" autofocus class="form-control" name="reg_id" id="reg_id"
+                              placeholder="Reg.id" maxlength="25"
+                              value="<%= typeof rows?.reg_id != 'undefined' ? rows?.reg_id : '' %>" />
+                            <label for="reg_id">Reg.No:</label>
+                            <div class="invalid-feedback">Registration Number is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <div class="row g-3 ">
+                          <div class="col-md-4 ">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Name"
+                                maxlength="75" value="<%= typeof rows?.name != 'undefined' ? rows?.name : '' %>"
+                                required />
+                              <label for="name">Name: </label>
+                              <div class="invalid-feedback">Name is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="age" id="age" placeholder="Age/Sex"
+                                required pattern="^[1-9]\d*$"
+                                value="<%= typeof rows?.age != 'undefined' ? rows?.age : '' %>"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxLength="3" />
+                              <label for="age">Age:</label>
+                              <div class="invalid-feedback">Age is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-floating">
+                              <select required aria-required="true" class="form-select mb-2" id="gender" name="gender">
+                                <option selected disabled value="">select</option>
+                                <option value="MALE" <%=selectedGender=='MALE' ? 'selected' : '' %>>Male</option>
+                                <option value="FEMALE" <%=selectedGender=='FEMALE' ? 'selected' : '' %>>Female</option>
+                                <option value="OTHERS" <%=selectedGender=='OTHERS' ? 'selected' : '' %>>Others</option>
+                              </select>
+                              <label for="gender">Gender:</label>
+                              <div class="invalid-feedback">Please select gender</div>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-floating">
+                              <select required aria-required="true" class="form-select mb-2" id="religion"
+                                name="religion">
+                                <option selected disabled value="">select</option>
+                                <% religions.forEach(function(religion) {if (religion.isActive===1) {%>
+
+                                  <option value="<%= religion.id %>" <%=selectedReligion==religion.id ? 'selected' : ''
+                                    %>><%= religion.religion %>
+                                  </option>
+                                  <% }}) %>
+                              </select>
+                              <label for="gender">Religion:</label>
+                              <div class="invalid-feedback">Religion is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <div class="row g-3">
+                          <div class="col-md-3">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="aadhar" id="aadhar" placeholder="Aadhar"
+                                pattern="[0-9]{12}"
+                                value="<%= typeof rows?.aadhar != 'undefined' ? rows?.aadhar : '' %>" required
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxLength="12" />
+                              <label for="aadhar">Aadhar No:</label>
+                              <div class="invalid-feedback">Aadhar Number is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-floating">
+                              <select required aria-required="true" class="form-select" id="language" name="language">
+                                <option selected disabled value="">select</option>
+                                <% languages.forEach(function(language) { %>
+                                  <option value="<%= language.id %>" <%=selectedLanguage==language.id ? 'selected' : ''
+                                    %>><%= language.language %>
+                                  </option>
+                                  <% }) %>
+                              </select>
+                              <label for="language">Language:</label>
+                              <div class="invalid-feedback">Gender is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="ref_by" id="ref_by"
+                                placeholder="Reference By" maxlength="65"
+                                value="<%= typeof rows?.ref_by != 'undefined' ? rows?.ref_by : '' %>" />
+                              <label for="ref_by">Reference By:</label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-floating">
+                              <% if (img===null ) { %>
+                                <input type="file" class="form-control" name="pic_filename" id="pic_filename"
+                                  placeholder="Select Picture" required accept="image/*"
+                                  onchange="previewImage(`pic_filename`, `show_img`)" />
+                                <div class="invalid-feedback">Only allows images less than 2MB in size.</div>
+                                <% } else { %>
+                                  <input type="file" class="form-control" name="pic_filename" id="pic_filename"
+                                    placeholder="Select Picture" accept="image/*"
+                                    onchange="previewImage(`pic_filename`, `show_img`)"
+                                    onchange="checkFileSize(this, `2MB`)" />
+                                  <% } %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="card mx-auto" style="width: 11.5rem; height: 12.3rem">
+                        <img id="show_img" class="card-img-top" alt="picture" style="height: 100%; width: 100%"
+                          src="/uploads/<%= img %>" />
+
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                  <!-- patient address deatails start  -->
+                  <!-- LOCAL ADDRESSS START  -->
+                  <div class="col mt-4">
+                    <h5>LOCAL ADDRESS</h5>
+                  </div>
+                  <div class="mt-2">
+                    <div class="row g-2 mt-2">
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <textarea class="form-control" name="local_address" placeholder="Please Fill your address"
+                            id="local_address" maxlength="500" style="min-height: 127px;"
+                            required><%= typeof rows?.local_address != 'undefined' ? rows?.local_address : '' %></textarea>
+                          <label for="local_address">Local Address:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input class="form-control" name="local_city" id="local_city"
+                            placeholder="Please Fill your address" maxlength="45"
+                            value="<%= typeof rows?.local_city != 'undefined' ? rows?.local_city : '' %>" required />
+                          <label for="local_city">City:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                        <div class="form-floating mt-2">
+                          <input class="form-control" name="local_landmark" id="local_landmark"
+                            placeholder="Please Fill your address" maxlength="65"
+                            value="<%= typeof rows?.local_landmark != 'undefined' ? rows?.local_landmark : '' %>"
+                            required></input>
+                          <label for="local_landmark">Landmarks:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row g-2 mt-1">
+
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" name="local_phone1" id="local_phone1"
+                            placeholder="phone number" pattern="[0-9]{10}"
+                            value="<%= typeof rows?.local_phone1 != 'undefined' ? rows?.local_phone1 : '' %>" required
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxLength="10" />
+                          <label for="local_phone1">Ph 1:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" name="local_phone2" id="local_phone2"
+                            placeholder="phone number" pattern="[0-9]{10}"
+                            value="<%= typeof rows?.local_phone2 != 'undefined' ? rows?.local_phone2 : '' %>" required
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxLength="10" />
+                          <label for="local_phone2">Ph 2:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- LOCAL ADDRESS END  -->
+                    <div class="col-12 mt-2">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="filladdress" onclick="fillAddress()"
+                          id="gridCheck" />
+                        <label class="form-check-label" for="gridCheck"> Local address same as permanent
+                          address. </label>
+                      </div>
+                    </div>
+
+                    <!-- PERMANENT ADDRESS START  -->
+
+                    <div class="col mt-4">
+                      <h5>PERMANENT ADDRESS</h5>
+                    </div>
+
+                    <div class="row g-2 mt-2">
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <textarea class="form-control" name="permanent_address" placeholder="Please Fill your address"
+                            id="permanent_address" maxlength="500"
+                            style="min-height: 127px;"><%= typeof rows?.permanent_address != 'undefined' ? rows?.permanent_address : '' %></textarea>
+                          <label for="permanent_address">Permanent Address:</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input class="form-control" name="permanent_city" id="permanent_city"
+                            placeholder="Please Fill your address" maxlength="45"
+                            value="<%= typeof rows?.permanent_city != 'undefined' ? rows?.permanent_city : '' %>" />
+                          <label for="permanent_city">City:</label>
+                        </div>
+                        <div class="form-floating mt-2">
+                          <input class="form-control" name="permanent_landmark" id="permanent_landmark"
+                            placeholder="Please Fill your address" maxlength="65"
+                            value="<%= typeof rows?.permanent_landmark != 'undefined' ? rows?.permanent_landmark : '' %>"></input>
+                          <label for="permanent_landmark">Landmarks:</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row g-2 mt-1">
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" name="permanent_phone1" id="permanent_phone1"
+                            placeholder="phone number" pattern="[0-9]{10}"
+                            value="<%= typeof rows?.permanent_phone1 != 'undefined' ? rows?.permanent_phone1 : '' %>"
+                            required
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxLength="10" />
+                          <label for="permanent_phone1">Ph 1:</label>
+
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" name="permanent_phone2" id="permanent_phone2"
+                            placeholder="phone number" pattern="[0-9]{10}"
+                            value="<%= typeof rows?.permanent_phone2 != 'undefined' ? rows?.permanent_phone2 : '' %>"
+                            required
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxLength="10" />
+                          <label for="permanent_phone2">Ph 2:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- patient address deatails stop -->
+                    <!-- family deatails and relatives deatails start -->
+                    <div class="col mt-4"></div>
+                    <div class="col mt-4">
+                      <h5>FAMILY DETAILS</h5>
+                    </div>
+                    <div>
+                      <div class="row g-2 mt-1">
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" name="fathers_name" id="fathers_name"
+                              placeholder="Father Name" maxlength="45"
+                              value="<%= typeof rows?.fathers_name != 'undefined' ? rows?.fathers_name : '' %>" />
+                            <label for="fathers_name">Father Name: </label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" name="mothers_name" id="mothers_name"
+                              placeholder="Mother Name" maxlength="45"
+                              value="<%= typeof rows?.mothers_name != 'undefined' ? rows?.mothers_name : '' %>" />
+                            <label for="mothers_name">Mother Name: </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-2 mt-2">
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" name="spouse_name" id="spouse_name"
+                              placeholder="Spouses Name" maxlength="45"
+                              value="<%= typeof rows?.spouse_name != 'undefined' ? rows?.spouse_name : '' %>" />
+                            <label for="spouse_name">Spouse's Name: </label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" name="occupation" id="occupation"
+                              placeholder="Occupation" maxlength="45"
+                              value="<%= typeof rows?.occupation != 'undefined' ? rows?.occupation : '' %>" />
+                            <label for="occupation">Occupation: </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-1">
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" name="family_occupation" id="family_occupation"
+                              placeholder="Father/Spouse's Occupation" maxlength="45"
+                              value="<%= typeof rows?.family_occupation != 'undefined' ? rows?.family_occupation : '' %>" />
+                            <label for="family_occupation">Father/Spouse's Occupation: </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <input type="number" class="form-control" name="family_earning" id="family_earning"
+                              placeholder="Total Family Earning Month"
+                              value="<%= typeof rows?.family_earning != 'undefined' ? rows?.family_earning : '' %>" />
+                            <label for="family_earning">Total Family Earning Month: </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-floating">
+                            <textarea class="form-control" name="remarks" id="remarks" placeholder="Remarks"
+                              style="height: 58px"><%= typeof rows?.remarks != 'undefined' ? rows?.remarks : '' %></textarea>
+                            <label for="remarks">Remarks:</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col mt-4">
+                    <h5>Details Of Closest Relatives / Friend(For Emergency)</h5>
+                  </div>
+                  <div>
+                    <div class="row g-2 mt-2">
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" name="buddy_name" id="buddy_name" placeholder="Name:"
+                            maxlength="45"
+                            value="<%= typeof rows?.buddy_name != 'undefined' ? rows?.buddy_name : '' %>" />
+                          <label for="buddy_name">Name: </label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" name="buddy_relation" id="buddy_relation"
+                            placeholder="Relationship" maxlength="45"
+                            value="<%= typeof rows?.buddy_relation != 'undefined' ? rows?.buddy_relation : '' %>" />
+                          <label for="buddy_relation">Relationship: </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row g-2 mt-2">
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <textarea class="form-control" placeholder="Address" id="buddy_address" name="buddy_address"
+                            maxlength="500"
+                            style="height: 127px"><%= typeof rows?.buddy_address != 'undefined' ? rows?.buddy_address : '' %></textarea>
+                          <label for="buddy_address">Address:</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" name="buddy_city" id="buddy_city" placeholder="City"
+                            maxlength="45"
+                            value="<%= typeof rows?.buddy_city != 'undefined' ? rows?.buddy_city : '' %>" />
+                          <label for="buddy_city">City: </label>
+                        </div>
+                        <div class="form-floating mt-2">
+                          <input type="number" class="form-control" placeholder="phone number" name="buddy_phone"
+                            pattern="[0-9]{10}"
+                            value="<%= typeof rows?.buddy_phone != 'undefined' ? rows?.buddy_phone : '' %>"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxLength="10" />
+                          <label for="buddy_phone">Ph:</label>
+                          <div class="invalid-feedback">It is mandatory field</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="row g-2 mt-2">
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" name="buddy1_name" id="buddy1_name" placeholder="Name:"
+                          maxlength="45"
+                          value="<%= typeof rows?.buddy1_name != 'undefined' ? rows?.buddy1_name : '' %>" />
+                        <label for="buddy1_name">Name: </label>
+                      </div>
+                      <div class="form-floating mt-2">
+                        <input type="text" class="form-control" name="buddy1_relation" id="buddy1_relation"
+                          placeholder="Relationship" maxlength="45"
+                          value="<%= typeof rows?.buddy1_relation != 'undefined' ? rows?.buddy1_relation : '' %>" />
+                        <label for="buddy1_relation">Relationship: </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <textarea class="form-control" placeholder="Address" id="buddy1_address" name="buddy1_address"
+                          maxlength="500"
+                          style="height: 127px"><%= typeof rows?.buddy1_address != 'undefined' ? rows?.buddy1_address : '' %></textarea>
+                        <label for="buddy1_address">Address:</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row g-2 mt-2">
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" name="buddy1_city" id="buddy1_city" placeholder="City"
+                          maxlength="45"
+                          value="<%= typeof rows?.buddy1_city != 'undefined' ? rows?.buddy1_city : '' %>" />
+                        <label for="buddy1_city">City: </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+
+                      <div class="form-floating ">
+                        <input type="number" class="form-control" name="buddy1_phone" placeholder="phone number"
+                          pattern="[0-9]{10}"
+                          value="<%= typeof rows?.buddy1_phone != 'undefined' ? rows?.buddy1_phone : '' %>"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          maxLength="10" />
+                        <label for="buddy1_phone">Ph:</label>
+                        <div class="invalid-feedback">It is mandatory field</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col mt-4">
+                  <h5>Details Of Person Accompaying Patient At Time Of Admission</h5>
+                </div>
+
+                <!-- family deatails and relatives deatails stop -->
+
+                <!-- deatails of person accompying patient at the time of addmission start -->
+                <div class="row g-2 mt-2">
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="admit_name" id="admit_name" placeholder="Name"
+                        maxlength="45" value="<%= typeof rows?.admit_name != 'undefined' ? rows?.admit_name : '' %>"
+                        required />
+                      <label for="admit_name">Name: </label>
+                      <div class="invalid-feedback">It is mandatory to fill</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" name="admit_relation" id="admit_relation"
+                        placeholder="Relationship With Patient" maxlength="45"
+                        value="<%= typeof rows?.admit_relation != 'undefined' ? rows?.admit_relation : '' %>"
+                        required />
+                      <label for="admit_relation">Relationship With Patient:</label>
+                      <div class="invalid-feedback">It is mandatory to fill</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 mt-1">
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <textarea class="form-control" name="admit_address" id="admit_address" style="min-height: 125px"
+                        required><%= typeof rows?.admit_address != 'undefined' ? rows?.admit_address : '' %></textarea>
+                      <label for="admit_address">Address: </label>
+                      <div class="invalid-feedback">It is mandatory to fill</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" id="admit_age" name="admit_age" placeholder="Age"
+                        value="<%= typeof rows?.admit_age != 'undefined' ? rows?.admit_age : '' %>" required
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxLength="3" />
+                      <label for="admit_age">Age:</label>
+                      <div class="invalid-feedback">It is mandatory to fill</div>
+                    </div>
+                    <div class="form-floating mt-2">
+                      <select required aria-required="true" class="form-select mb-2" id="admit_gender"
+                        name="admit_gender">
+                        <option selected disabled value="">select</option>
+                        <option value="1" <%=selectedAGender==1 ? 'selected' : '' %>>Male</option>
+                        <option value="2" <%=selectedAGender==2 ? 'selected' : '' %>>Female</option>
+                        <option value="3" <%=selectedAGender==3 ? 'selected' : '' %>>Others</option>
+                      </select>
+                      <label for="gender">Gender:</label>
+                      <div class="invalid-feedback">It is mandatory to select</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-check mt-2">
+                  <label class="form-check-label" for="is_Active">
+                    Active ?
+                  </label>
+                  <input class="form-check-input" type="checkbox" value="1" id="is_Active" name="is_Active"
+                    <%=rows.isActive ? "checked" : "" %>>
+
+                  <div class="invalid-feedback">Please select Check box</div>
+                </div>
+                <!-- deatails of person accompying patient at the time of addmission end -->
+                <div class="col mt-5"></div>
+                <div class="d-grid gap-2 d-md-block text-center">
+                  <button type="submit" name="save" id="save" class="btn btn-primary">Save/Next</button>
+                  <button type="submit" name="save" id="print-button" class="btn btn-primary">Print</button>
+                  <a href="javascript:history.back()" type="submit" class="btn btn-secondary">Back</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- form end -->
+    </div>
+  </div>

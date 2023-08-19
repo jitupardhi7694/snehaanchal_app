@@ -1,0 +1,64 @@
+<%- include('../layouts/partials/messages.ejs') %>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-8 mx-auto">
+            <div class="card card-body shadow">
+                <h2 class="text-center mb-3"><i class="bi bi-box-arrow-in-right"></i> &nbsp; Doctor Notes </h2>
+                <form class="needs-validation" method="POST" novalidate id="demo">
+                    <div class="mt-2">
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input autofocus type="text" id="id" name="id" class="form-control"
+                                        value="<%= typeof id != 'undefined' ? id : '' %>" hidden />
+                                    <select class="form-select mb-2" id="patient_id" name="patient_id" required>
+                                        <option selected disabled value="">select</option>
+                                        <% patientTypes.forEach(function(type) { if (type.isActive===1){ %>
+                                            <option value="<%= type.id %>" <%=selectedPatientType==type.id ? 'selected'
+                                                : '' %>><%= type.name %>
+                                            </option>
+                                            <% }}) %>
+                                    </select>
+                                    <label for="patient_id">Patient Id:</label>
+                                    <div class="invalid-feedback">patient type is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" name="note_date" id="note_date"
+                                        value="<%= typeof rows?.note_date != 'undefined' ? rows?.note_date : new Date().toISOString().substr(0, 10) %>"
+                                        max="<%= new Date().toISOString().substr(0, 10) %>" />
+                                    <label for="note_date">Note Date:</label>
+                                    <div class="invalid-feedback">Please fill note date..</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2 ">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <textarea class="form-control" name="symptom_name" placeholder="fill symptoms"
+                                        id="symptom_name" maxlength="300" style="min-height: 150px;"
+                                        required><%= typeof rows?.symptom_name != 'undefined' ? rows?.symptom_name : '' %></textarea>
+                                    <label for="symptom_name">Symptoms :</label>
+                                    <div class="invalid-feedback">Symptoms is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <textarea class="form-control" name="medication_name" placeholder="fill medication"
+                                        id="medication_name" maxlength="256" style="min-height: 150px;"
+                                        required><%= typeof rows?.medication_name != 'undefined' ? rows?.medication_name : '' %></textarea>
+                                    <label for="medication_name">Medication :</label>
+                                    <div class="invalid-feedback">Medication is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-block bg-primary" name="action" value="save">Save</button>
+                        <button type="reset" class="btn btn-block bg-warning">Clear</button>
+                        <a href="javascript:history.back()" type="submit" class="btn btn-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

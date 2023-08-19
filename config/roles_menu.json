@@ -1,0 +1,278 @@
+{
+   "adminMenu": [
+      {
+         "name": "Dashboard",
+         "url": "/"
+      },
+      {
+         "name": "Masters",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Add Patients",
+               "url": "/patient/register"
+            },
+            {
+               "name": "Add Staff",
+               "url": "/staff/register"
+            },
+            {
+               "name": "Add Medication",
+               "url": "/medication/register"
+            },
+            {
+               "name": "Add Langauge",
+               "url": "/language"
+            },
+            {
+               "name": "Add Religion",
+               "url": "/religion"
+            },
+            {
+               "name": "Add User Roles",
+               "url": "/user_roles"
+            },
+            {
+               "name": "Add Patient Types",
+               "url": "/patient_type"
+            },
+            {
+               "name": "Add Nurse",
+               "url": "/nurse/register"
+            },
+            {
+               "name": "Add Visit",
+               "url": "/visits/register"
+            },
+            {
+               "name": "Add Prescription",
+               "url": "/prescriptions/register"
+            },
+            {
+               "name": "Add Symptoms",
+               "url": "/symptoms/register"
+            }
+         ]
+      },
+      {
+         "name": "Reports",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Patient Reports",
+               "url": "/patient/registerTable"
+            },
+            {
+               "name": "Staff Reports",
+               "url": "/staff/registerTable"
+            },
+            {
+               "name": "Medication Reports",
+               "url": "/medication/registerTable"
+            },
+            {
+               "name": "Counseller Reports",
+               "url": "/counsellerAdmin/counsellerTableAdmin"
+            },
+
+            {
+               "name": "Nurse Reports",
+               "url": "/nurse/nurseTable"
+            },
+            {
+               "name": "Visits Report",
+               "url": "/visits/visitTable"
+            },
+            {
+               "name": "Prescription Report",
+               "url": "/prescriptions/prescriptionsReport"
+            },
+            {
+               "name": "Symptoms Report",
+               "url": "/symptoms/symptomsReport"
+            }
+         ]
+      }
+   ],
+   "ownerMenu": [
+      {
+         "name": "Dashboard",
+         "url": "/"
+      },
+      {
+         "name": "Masters",
+         "url": "/",
+         "submenu": [
+            {
+               "name": "Add Patients",
+               "url": "/patient/register"
+            },
+            {
+               "name": "Add Staff",
+               "url": "/staff/register"
+            },
+            {
+               "name": "Add Medication",
+               "url": "/medication/register"
+            },
+            {
+               "name": "Add Langauge",
+               "url": "/language"
+            },
+            {
+               "name": "Add Religion",
+               "url": "/religion"
+            },
+            {
+               "name": "Add User Roles",
+               "url": "/user_roles"
+            },
+            {
+               "name": "Add Patient Types",
+               "url": "/patient_type"
+            },
+            {
+               "name": "Add Nurse",
+               "url": "/nurse/register"
+            },
+            {
+               "name": "Add Visit",
+               "url": "/visits/register"
+            },
+            {
+               "name": "Add Prescription",
+               "url": "/prescriptions/register"
+            },
+            {
+               "name": "Add Symptoms",
+               "url": "/symptoms/register"
+            }
+         ]
+      },
+      {
+         "name": "Reports",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Patient Reports",
+               "url": "/patient/registerTable"
+            },
+            {
+               "name": "Staff Reports",
+               "url": "/staff/registerTable"
+            },
+            {
+               "name": "Medication Reports",
+               "url": "/medication/registerTable"
+            },
+            {
+               "name": "Counseller Reports",
+               "url": "/counsellerAdmin/counsellerTableAdmin"
+            },
+
+            {
+               "name": "Nurse Reports",
+               "url": "/nurse/nurseTable"
+            },
+            {
+               "name": "Visits Report",
+               "url": "/visits/visitTable"
+            },
+            {
+               "name": "Prescription Report",
+               "url": "/prescriptions/prescriptionsReport"
+            },
+            {
+               "name": "Symptoms Report",
+               "url": "/symptoms/symptomsReport"
+            }
+         ]
+      }
+   ],
+
+   "doctorsMenu": [
+      {
+         "name": "Dashboard",
+         "url": "/"
+      },
+      {
+         "name": "Add Prescription",
+         "url": "/prescriptions/register"
+      },
+      {
+         "name": "Add Symptoms",
+         "url": "/symptoms/register"
+      },
+      {
+         "name": "Reports",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Prescription Report",
+               "url": "/prescriptions/prescriptionsReport"
+            },
+            {
+               "name": "Symptoms Report",
+               "url": "/symptoms/symptomsReport"
+            }
+         ]
+      }
+   ],
+   "counsellerMenu": [
+      {
+         "name": "Dashboard",
+         "url": "/"
+      },
+      {
+         "name": "Add Counseller",
+         "url": "/counseller/register"
+      },
+      {
+         "name": "Add Visits",
+         "url": "/visits/register"
+      },
+      {
+         "name": "Reports",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Counseller Report",
+               "url": "/counseller/counsellerTable"
+            },
+            {
+               "name": "Visits Report",
+               "url": "/visits/visitTable"
+            }
+         ]
+      }
+   ],
+   "nurseMenu": [
+      {
+         "name": "Dashboard",
+         "url": "/"
+      },
+
+      {
+         "name": "Add Symptoms",
+         "url": "/symptoms/register"
+      },
+      {
+         "name": "Add Nurse",
+         "url": "/nurse/register"
+      },
+      {
+         "name": "Reports",
+         "url": "",
+         "submenu": [
+            {
+               "name": "Symptoms Report",
+               "url": "/symptoms/symptomsReport"
+            },
+            {
+               "name": "Nurse Reports",
+               "url": "/nurse/nurseTable"
+            }
+         ]
+      }
+   ]
+}

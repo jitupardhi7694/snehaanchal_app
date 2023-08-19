@@ -1,0 +1,339 @@
+:root {
+   --bg-color: rgb(231, 82, 201);
+   --bg-hover: rgb(199, 100, 255);
+   --rose: rgba(182, 9, 130, 0.6);
+
+   /* aos global setting */
+   --animate-duration: 800ms;
+   --animate-delay: 0.9s;
+}
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+body {
+   /* to accomodate the nav-bar and footer-bar */
+   margin-top: 130px;
+   margin-bottom: 30px;
+   background-color: rgb(250, 250, 250);
+}
+
+section {
+   /* this helps anchor tag to leave 130px on top to avoid overlapping on fixed-navbar */
+   scroll-margin-top: 130px;
+}
+
+.body-wrapper {
+   position: relative;
+   overflow-x: hidden;
+}
+
+/* bootstrap input box color settings */
+.form-control,
+button:active,
+button:focus {
+   border-top-style: none;
+   border-right-style: none;
+   border-bottom-style: solid;
+   border-left-style: none;
+   border-width: 1px;
+   border-color: var(--bg-color) !important;
+   box-shadow: none !important;
+   /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--bg-color) !important; */
+   outline: 0 none;
+   transition: border-width 0.3s ease-in-out;
+}
+
+.form-control:focus {
+   border-width: 3px;
+   /* background-color: rgb(240, 215, 219) !important; */
+}
+
+.bg-primary {
+   background-color: var(--bg-color) !important;
+}
+
+.text-primary {
+   color: var(--bg-color) !important;
+}
+
+.bg-primary:hover {
+   background-color: var(--bg-hover) !important;
+}
+
+.alert-danger {
+   border-width: 0px 0px 0px 1rem !important;
+   border-color: rgb(179, 4, 4);
+}
+
+.alert-success {
+   border-width: 0px 0px 0px 1rem !important;
+   border-color: green;
+}
+
+/* marking required fields */
+/* input:required::before {
+  content: '*' !important;
+  color: red !important;
+} */
+
+.navbar {
+   background-color: white;
+}
+
+nav ul li a {
+   font-size: 14px !important;
+   transition: all 0.25s linear 0s;
+   display: block;
+}
+nav ul li a:hover {
+   color: var(--bg-color) !important;
+   font-weight: bold;
+}
+
+/* section image */
+.section-img {
+   color: var(--bg-color);
+   margin: 20px;
+   height: 80px;
+   width: 100%;
+   text-align: left;
+}
+
+/* hero image card and its hover */
+.card-wrapper {
+   padding: 10px;
+   height: 100%;
+   width: 100%;
+   margin: auto;
+   background-color: #f4ddf6;
+   border: 5px solid white;
+   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+   transition: box-shadow 0.5s ease;
+}
+
+.card-wrapper:hover {
+   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.8);
+}
+
+.swiper-container {
+   max-width: 90vw;
+   width: 100%;
+   height: 300px;
+}
+
+.dashboard-card {
+   transition: all 0.3s ease;
+}
+
+#counselling_date {
+   border: 1px solid rgb(207, 201, 201) !important;
+}
+
+#visit_date {
+   border: 1px solid rgb(207, 201, 201) !important;
+}
+#symptom_name {
+   border: 1px solid rgb(207, 201, 201) !important;
+}
+
+.dashboard-card:hover {
+   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.6);
+}
+
+/* Close button on user-profile form - topright corner x button */
+.corner-close {
+   top: -30px !important;
+   left: auto !important;
+   right: -30px !important;
+   border: 2px solid var(--bg-hover) !important;
+   background-color: var(--bg-color);
+}
+
+/* flash messages alert boxes */
+.alert-container {
+   z-index: 10000;
+   position: fixed;
+   top: 110;
+   right: 0;
+   margin-left: auto;
+}
+
+.alert {
+   right: 5;
+   position: relative;
+   z-index: 999999;
+}
+
+#lend-a-hand li:nth-child(odd) {
+   padding: 20px 0;
+   color: #444444;
+   background: #f7ebf8;
+}
+
+#lend-a-hand li:nth-child(even) {
+   padding: 20px 0;
+   color: #444444;
+   background: white;
+}
+
+#lend-a-hand li p {
+   font-size: 1.2 em;
+}
+
+.img-zoom {
+   height: 100px;
+   width: 150px;
+   transition: all 0.5s ease-in-out;
+}
+
+.img-zoom:hover {
+   transform: scale(1.2);
+}
+
+.rounded-img {
+   border-radius: 25px;
+   max-height: 400px;
+   height: 100%;
+}
+
+/* set width of cards on small screens */
+@media screen and (max-width: 576px) {
+   .flip-card {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 80% !important;
+   }
+   .order-pic {
+      height: 60px !important;
+      width: 60px !important;
+   }
+
+   body {
+      /* to accomodate the nav-bar and footer-bar on mobile screen */
+      margin-bottom: 60px;
+   }
+}
+
+#palliative,
+#contact,
+#testimonials,
+#csr {
+   padding: 20px 0;
+   color: #444444;
+   background: #f7ebf8;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.footer-top {
+   padding: 20px 0;
+   color: #444444;
+   font-size: 14px;
+   background: #f1f0f2;
+}
+
+#footer .footer-bottom {
+   font-size: 13px;
+   padding: 5px 5px;
+   background: var(--bg-color);
+}
+
+#footer .credits {
+   font-size: 13px;
+   color: #444444;
+}
+
+#footer .credits a:link {
+   font-weight: bold !important;
+   text-decoration: none;
+}
+
+/* ------------------------
+Newsletter Form
+--------------------------- */
+#contact .footer-newsletter h4 {
+   font-size: 16px;
+   font-weight: bold;
+   color: #444444;
+   position: relative;
+   padding-bottom: 12px;
+}
+
+#contact .footer-newsletter form {
+   margin-top: 30px;
+   background: #fff;
+   padding: 6px 10px;
+   position: relative;
+   border-radius: 50px;
+   text-align: left;
+   border: 1px solid #e4e3e6;
+}
+
+#contact .footer-newsletter form input[type='email'] {
+   border: 0;
+   padding: 4px 8px;
+   width: calc(100% - 100px);
+}
+
+#contact .footer-newsletter form input[type='submit'] {
+   position: absolute;
+   top: 0;
+   right: -2px;
+   bottom: 0;
+   border: 0;
+   background: none;
+   font-size: 16px;
+   padding: 0 20px;
+   background: var(--bg-color);
+   color: #fff;
+   transition: 0.3s;
+   border-radius: 50px;
+   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#contact .footer-newsletter form input[type='submit']:hover {
+   background: var(--bg-hover);
+}
+
+/* for registration patient */
+
+#regtable {
+   background-color: #ed7cc5;
+   font-size: 0.9rem;
+}
+
+#regrowdata {
+   font-size: 0.9rem;
+}
+/* -----------------
+Hero Image Animation
+-------------------- */
+#hero .animated {
+   animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@-webkit-keyframes up-down {
+   0% {
+      transform: translateY(20px);
+   }
+   100% {
+      transform: translateY(-20px);
+   }
+}
+
+@keyframes up-down {
+   0% {
+      transform: translate + Y(10px);
+   }
+   100% {
+      transform: translateY(-10px);
+   }
+}
+
+#searchForm {
+   margin-left: 600px !important;
+}

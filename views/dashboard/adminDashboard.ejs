@@ -1,0 +1,301 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+   <div class="container">
+      <h3 class="display-6">Welcome, <span style="text-transform: uppercase; font-weight:350;">
+            <%= name %>
+         </span></h3>
+      <div class="row ">
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%=data%>
+                        <span class="display-6 fs-4" style="color: #333"> Patients</span>
+                  </h6>
+                  <a href="/patient/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="patient/registerTable" class="btn btn-secondary my-1">Reports</a>
+                  <a href="/patient_docs/patientDocTable" class="btn btn-secondary my-1">DocReport</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h5 class="display-6 fs-1">
+                     <%=staffDashData %> <span class="display-6 fs-4" style="color: #333"> Staffs</span>
+                  </h5>
+                  <a href="staff/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="staff/registerTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%=totalMedicine %> <span class="display-6 fs-4" style="color: #333"> Medications</span>
+                  </h6>
+                  <a href="medication/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="medication/registerTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= counsellerTotal %>
+                        <span class="display-6 fs-4" style="color: #333">Counseller Report </span>
+                  </h6>
+                  <a href="counseller/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="counsellerAdmin/counsellerTableAdmin" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+
+
+
+         <!-- bar for last six registerd patients -->
+
+
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%=languageData%>
+                        <span class="display-6 fs-4" style="color: #333">Language</span>
+                  </h6>
+                  <a href="/language" class="btn btn-secondary my-1">Add</a>
+                  <!-- <a href="" class="btn btn-secondary my-1">Reports</a> -->
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h5 class="display-6 fs-1">
+                     <%=religionData %> <span class="display-6 fs-4" style="color: #333">Religion</span>
+                  </h5>
+                  <a href="/religion" class="btn btn-secondary my-1">Add</a>
+                  <!-- <a href="" class="btn btn-secondary my-1">Reports</a> -->
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%=userRolesData %> <span class="display-6 fs-4" style="color: #333">User Roles</span>
+                  </h6>
+                  <a href="/user_roles" class="btn btn-secondary my-1">Add</a>
+                  <!-- <a href="" class="btn btn-secondary my-1">Reports</a> -->
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= patientTypeData %>
+                        <span class="display-6 fs-4" style="color: #333">Patient Type </span>
+                  </h6>
+                  <a href="/patient_type" class="btn btn-secondary my-1">Add</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= nurseData %>
+                        <span class="display-6 fs-4" style="color: #333">Nurse</span>
+                  </h6>
+                  <a href="nurse/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="nurse/nurseTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= visitData %>
+                        <span class="display-6 fs-4" style="color: #333">Visit </span>
+                  </h6>
+                  <a href="visits/register" class="btn btn-secondary my-1"> Register</a>
+                  <a href="visits/visitTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= prescriptionData %>
+                        <span class="display-6 fs-4" style="color: #333">Prescription </span>
+                  </h6>
+                  <a href="prescriptions/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="prescriptions/prescriptionsReport" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= symptoms %>
+                        <span class="display-6 fs-4" style="color: #333">Symptoms </span>
+                  </h6>
+                  <a href="symptoms/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="symptoms/symptomsReport" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= PatientDocs %>
+                        <span class="display-6 fs-4" style="color: #333">Patients Docs</span>
+                  </h6>
+                  <a href="patient_docs/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="/patient_docs/patientDocTable" class="btn btn-secondary my-1">Report</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h6 class="display-6 fs-1">
+                     <%= DocPrescriptions %>
+                        <span class="display-6 fs-4" style="color: #333">Doctor prescription </span>
+                  </h6>
+                  <a href="doctor_prescription/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="doctor_prescription/doctorPrescriptionTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <canvas id="myChartreg"> </canvas>
+               </div>
+            </div>
+         </div>
+
+         <!-- chart js for male female -->
+
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <canvas id="myChart"></canvas>
+               </div>
+            </div>
+         </div>
+
+         <!--chart religion  -->
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <canvas id="myChartReligion"></canvas>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+   <script>
+
+      // male female chart code
+      const data = {
+         labels: ["Male", "Female"],
+         datasets: [{
+            data: [<%= Patientsgenderdata %>],
+            backgroundColor: ["#394E79", "#5E83BA",],
+            hoverBackgroundColor: ["#394E79", "#5E83BA"]
+         }]
+      };
+
+      const options = {
+         responsive: true
+      };
+
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const pieChart = new Chart(ctx, {
+         type: "pie",
+         data: data,
+         options: options
+      });
+
+      // religion chart code
+
+      const datareligion = {
+
+         labels: ["MARATHA", "HINDU", "MUSLIM", "SIKH", "CHRISTIANS"],
+         datasets: [{
+            data: [<%=Patientsreligiondata %>],
+            backgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5"],
+            hoverBackgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5"]
+         }]
+      };
+
+      const options1 = {
+         responsive: true,
+      };
+
+      const ctx1 = document.getElementById("myChartReligion").getContext("2d");
+      const pieChart1 = new Chart(ctx1, {
+         type: "pie",
+         data: datareligion,
+         options: options1
+      });
+
+
+
+      // registered chart code
+
+      const monthlypatientCounts = <%= JSON.stringify(monthlypatientCounts) %>;
+      const labels = [];
+      for (let i = 5; i >= 0; i--) {
+         labels.push(moment().subtract(i, 'months').format('MMM'));
+      }
+      const registerdpatient = {
+
+         labels: labels,
+         datasets: [{
+            label: 'Registerd Data',
+            data: monthlypatientCounts,
+            backgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5", "#FFD7BA"],
+            hoverBackgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5", "#FFD7BA"]
+         }]
+      };
+
+      const optionsreg = {
+         responsive: true,
+         scales: {
+            yAxes: [{
+               ticks: {
+                  beginAtZero: true,
+               }
+            }]
+         }
+      };
+
+      const ctxreg = document.getElementById("myChartreg").getContext("2d");
+
+      const barChartreg = new Chart(ctxreg, {
+         type: "bar",
+         data: registerdpatient,
+         options: optionsreg,
+
+      });
+
+
+   </script>

@@ -1,0 +1,180 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body shadow">
+                <h2 class="text-center mb-3">
+                    <i class="bi bi-box-arrow-in-right"></i>Visits Report
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body" style="height: 100%">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar"
+                    style=" position: relative;   overflow: auto;   display: block;  ">
+                    <nav class="navbar navbar-light ">
+                        <div class="container-fluid">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href="javascript:history.back()" type="submit" class="btn btn-secondary"> <i
+                                        class="bi bi-arrow-left"></i></a>
+                                <a href="/visits/register" type="submit" class="btn btn-success"> <i
+                                        class="bi bi-person-plus-fill"></i> </a>
+                                <button id="export" class="btn btn-primary"> <i class="bi bi-download"></i>
+
+                                </button>
+                            </div>
+
+                            <div class="d-flex">
+                                <input class="form-control me-2" id="search" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button class="btn btn-warning" type="reset" id="clear-button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-bordered border-dark table-hover mt-2 " id="table">
+                        <thead class="text-center">
+                            <tr id="regtable">
+                                <th scope="col">ACTION</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Staff Name</th>
+                                <th scope="col">Visit Date</th>
+                                <th scope="col">Visit Notes</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% registerVisitsTable.reverse() %>
+                                <% if (registerVisitsTable.length !==0) { %>
+
+                                    <% registerVisitsTable.forEach(function(data) { %>
+                                        <tr id="regrowdata" class="text-center">
+                                            <td>
+                                                <% if(data.isPatientActive==1 && data.isStaffActive==1){%>
+
+                                                    <a href="/visits/edit/<%= data.id %>" class="btn btn-success btn-sm"
+                                                        style="width: 25px;padding: 2px;"><i
+                                                            class="bi bi-pencil"></i></a>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal<%= data.id %>"
+                                                        style="width: 25px;padding: 2px;">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="deleteModal<%= data.id %>"
+                                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                                        Delete ?
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <h6 class="modal-body">
+                                                                    Are you sure you want to delete <%=
+                                                                        data.patientname%> ?
+                                                                </h6>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <form
+                                                                        action="/visits/visitTable/<%= data.id%>/delete"
+                                                                        method="post">
+                                                                        <button type="submit" class="btn btn-danger"
+                                                                            id="delete">
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% }else {%>
+                                                        <a class="btn btn-success btn-sm disabled"
+                                                            style="width: 25px;padding: 2px;"><i
+                                                                class="bi bi-pencil"></i></a>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal<%= data.id %>"
+                                                            style="width: 25px;padding: 2px;">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="deleteModal<%= data.id %>"
+                                                            data-bs-backdrop="static" data-bs-keyboard="false"
+                                                            tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="staticBackdropLabel">Delete ?
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <h6 class="modal-body">
+                                                                        Are you sure you want to delete <%=
+                                                                            data.patientname%> ?
+                                                                    </h6>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <form
+                                                                            action="/visits/visitTable/<%= data.id%>/delete"
+                                                                            method="post">
+                                                                            <button type="submit" class="btn btn-danger"
+                                                                                id="delete">
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                            </td>
+                                            <td>
+                                                <%= data.id %>
+                                            </td>
+                                            <td>
+                                                <%= data.patientname %>
+                                            </td>
+                                            <td>
+                                                <%= data.staffname %>
+                                            </td>
+                                            <td>
+                                                <%= moment(data.visit_date).format('YYYY-MM-DD HH:mm') %>
+                                            </td>
+                                            <td>
+                                                <%= data.notes %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                            <% } else { %>
+                                                <tr class="text-center " id="noRecordFoundRow">
+                                                    <td colspan="17">No Record Found</td>
+                                                </tr>
+                                                <% } %>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>

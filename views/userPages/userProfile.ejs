@@ -1,0 +1,104 @@
+<%- include('../layouts/partials/messages.ejs') %>
+<div class="row" style="margin-top: 50px">
+  <div class="col-md-7 mx-auto">
+    <div class="card card-body shadow mx-3">
+      <div class="position-relative">
+        <a href="/" type="button" class="corner-close btn-close position-absolute rounded-circle p-2" aria-label="Close"></a>
+      </div>
+      <h1 class="text-center mb-3"><i class="bi bi-person-lines-fill"></i> User Profile</h1>
+      <form action="/users/profile" method="POST">
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <textarea
+                maxlength="150"
+                autofocus
+                class="form-control"
+                required
+                style="height: 100px"
+                placeholder="Address"
+                height="500px"
+                name="address"
+                id="address"
+              >
+<%= typeof address != 'undefined' ? address : '' %></textarea
+              >
+              <label for="address">Address</label>
+            </div>
+          </div>
+        </div>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="city"
+                id="city"
+                required
+                maxlength="45"
+                placeholder="City"
+                value="<%= typeof city != 'undefined' ? city : '' %>"
+              />
+              <label for="city">City</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                required
+                name="state"
+                id="state"
+                placeholder="state"
+                maxlength="45"
+                value="<%= typeof state != 'undefined' ? state : '' %>"
+              />
+              <label for="state">State</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                required
+                name="pincode"
+                id="pincode"
+                placeholder="Pin Code"
+                maxlength="6"
+                pattern="^[0-9]{6}$"
+                value="<%= typeof pincode != 'undefined' ? pincode : '' %>"
+                title="Please enter 6 digit pin code"
+              />
+              <label for="password">Pin Code</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                required
+                name="phone"
+                id="phone"
+                placeholder="phone"
+                maxlength="10"
+                pattern="^[0-9]{10}$"
+                value="<%= typeof phone != 'undefined' ? phone : '' %>"
+                title="Please enter 10 digit phone number"
+              />
+              <label for="password">Phone</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn bg-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

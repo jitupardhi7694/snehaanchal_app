@@ -1,0 +1,91 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body shadow">
+                <h2 class="text-center mb-3"><i class="bi bi-box-arrow-in-right"></i>Medication Master</h2>
+                <form class="needs-validation" method="POST" novalidate id="demo">
+                    <div class="row g-2">
+                        <input type="text" name="id" id="id" hidden>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="medication_name"
+                                    placeholder="Medication Name" name="medication_name"
+                                    value="<%= typeof rows?.medication_name != 'undefined' ? rows?.medication_name : '' %>"
+                                    required>
+                                <label for="medication_name">Medication Name</label>
+                                <div class="invalid-feedback">
+                                    please enter your Medication name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="dosage" placeholder="Dosage" name="dosage"
+                                    value="<%= typeof rows?.dosage != 'undefined' ? rows?.dosage : '' %>" required>
+                                <label for="dosage">Dosage</label>
+                                <div class="invalid-feedback">
+                                    please enter dosage
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row g-2 mt-2">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="frequency" name="frequency" required
+                                    value="<%= typeof rows?.frequency != 'undefined' ? rows?.frequency : '' %>"
+                                    placeholder="Frequency">
+                                <label for="frequency">Frequency</label>
+                                <div class="invalid-feedback">
+                                    please enter Frequency
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" name="start_date" id="start_date" required
+                                    value="<%= typeof rows?.start_date != 'undefined' ? rows?.start_date : '' %>"
+                                    max="<%= new Date().toISOString().substr(0, 10) %>" placeholder="Date Of Birth">
+                                <label for="start_date">Start Date</label>
+                                <div class="invalid-feedback">
+                                    please select start date
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="end_date" name="end_date"
+                                    placeholder="End Date"
+                                    value="<%= typeof rows?.end_date != 'undefined' ? rows?.end_date : '' %>" required>
+                                <label for="end_date">End Date</label>
+                                <div class="invalid-feedback">
+                                    please select end date
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-check mt-2">
+                        <label class="form-check-label" for="is_Active">
+                            Active ?
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="1" id="is_Active" name="is_Active"
+                            <%=rows.isActive ? "checked" : "" %>>
+                        <div class="invalid-feedback">Please select Check box</div>
+                    </div>
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn btn-block bg-primary">Save</button>
+                        <button type="reset" class="btn btn-block bg-warning">Clear</button>
+                        <a href="javascript:history.back()" type="submit" class="btn btn-secondary">Back</a>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

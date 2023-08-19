@@ -1,0 +1,86 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+
+   <div class="container">
+      <h3 class="display-6">Welcome, <span style="text-transform: uppercase; font-weight:350;">
+            <%= name %>
+         </span></h3>
+      <div class="row mb-3">
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h5 class="display-6 fs-1">
+                     <%=data %> <span class="display-6 fs-4" style="color: #333">Registered
+                           Counseller</span>
+                  </h5>
+                  <a href="/counseller/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="/counseller/counsellerTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <h5 class="display-6 fs-1">
+                     <%= visitData %> <span class="display-6 fs-4" style="color: #333">Registered
+                           Visits</span>
+                  </h5>
+                  <a href="/visits/register" class="btn btn-secondary my-1">Add</a>
+                  <a href="/visits/visitTable" class="btn btn-secondary my-1">Reports</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="card dashboard-card mt-5 border-2">
+               <div class="card-body">
+                  <canvas id="myChartreg"></canvas>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- bar for last six registerd counseller -->
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+   <script>
+      // registered counseller chart code
+
+      const monthlycounsellerCounts = <%= JSON.stringify(monthlycounsellerCounts) %>;
+      const labels = [];
+      for (let i = 5; i >= 0; i--) {
+         labels.push(moment().subtract(i, 'months').format('MMM'));
+      }
+      const registerdcounseller = {
+
+         labels: labels,
+         datasets: [{
+            label: 'Counseller Data',
+            data: monthlycounsellerCounts,
+            backgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5", "#FFD7BA"],
+            hoverBackgroundColor: ["#394E79", "#5E83BA", "#C2D2E9", "#9A8BA5", "#E3C5D5", "#FFD7BA"]
+         }]
+      };
+
+      const optionsreg = {
+         responsive: true,
+         scales: {
+            yAxes: [{
+               ticks: {
+                  beginAtZero: true,
+               }
+            }]
+         }
+      };
+
+      const ctxreg = document.getElementById("myChartreg").getContext("2d");
+
+      const barChartreg = new Chart(ctxreg, {
+         type: "bar",
+         data: registerdcounseller,
+         options: optionsreg,
+
+      });
+   </script>

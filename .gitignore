@@ -1,0 +1,6 @@
+node_modules
+logs
+logs/combined.log
+log/error.log
+public/uploads
+public/admin

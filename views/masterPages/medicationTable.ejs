@@ -1,0 +1,142 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body shadow">
+                <h2 class="text-center mb-3">
+                    <i class="bi bi-box-arrow-in-right"></i>Medications Data Master
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body" style="height: 100%">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar"
+                    style=" position: relative;   overflow: auto;   display: block;  ">
+                    <nav class="navbar navbar-light ">
+                        <div class="container-fluid">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href="javascript:history.back()" type="submit" class="btn btn-secondary"> <i
+                                        class="bi bi-arrow-left"></i></a>
+
+
+                                <a href="/medication/register" type="submit" class="btn btn-success"><i
+                                        class="bi bi-person-plus-fill"></i></a>
+                                <button type="submit" id="export" class="btn btn-primary"> <i
+                                        class="bi bi-download"></i>
+                                </button>
+                            </div>
+
+                            <div class="d-flex">
+                                <input class="form-control me-2" id="search" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button class="btn btn-warning" type="reset" id="clear-button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-bordered border-dark table-hover mt-2 " id="table">
+                        <thead class="text-center">
+                            <tr id="regtable">
+                                <th scope="col">Action</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Medication NAME</th>
+                                <th scope="col">Dosage</th>
+                                <th scope="col">Frequency</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Active</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% medicationReport.reverse() %>
+
+                                <% if(medicationReport.length!=0) { var i=1; medicationReport.forEach(function(data){ %>
+
+                                    <tr id="regrowdata" class="text-center">
+                                        <td>
+                                            <a href="/medication/edit/<%= data.id %>" class="btn btn-success btn-sm"
+                                                style="width: 25px;padding: 2px;"><i class="bi bi-pencil"></i></a>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal<%= data.id %>"
+                                                style="width: 25px;padding: 2px;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal<%= data.id %>"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Delete ?
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <h6 class="modal-body">
+                                                            Are you sure you want to delete <%= data.medication_name%>?
+                                                        </h6>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <form
+                                                                action="/medication/registerTable/<%= data.id%>/delete"
+                                                                method="post">
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    id="delete">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%=data.id %>
+                                        </td>
+                                        <td>
+                                            <%=data.medication_name %>
+                                        </td>
+                                        <td>
+                                            <%= data.dosage %>
+                                        </td>
+                                        <td>
+                                            <%= data.frequency %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= moment(data.start_date).format('YYYY-MM-DD')%>
+                                        </td>
+                                        <td>
+                                            <%= moment(data.end_date).format('YYYY-MM-DD')%>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="checkbox" value="" id="isactive"
+                                                <%=data.isActive ? "checked" : "" %> disabled>
+                                        </td>
+
+                                    </tr>
+
+                        </tbody>
+                        <% i++; }) %>
+                            <% } else{ %>
+                                <tr class="text-center " id="noRecordFoundRow">
+                                    <td colspan="7">No Record Found</td>
+                                </tr>
+                                <% } %>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>

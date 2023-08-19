@@ -1,0 +1,44 @@
+/* 
+textarea:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='datetime']:focus,
+input[type='datetime-local']:focus,
+input[type='date']:focus,
+input[type='month']:focus,
+input[type='time']:focus,
+input[type='week']:focus,
+input[type='number']:focus,
+input[type='email']:focus,
+input[type='url']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='color']:focus,
+input[type='submit']:focus {
+  border-color: var(--bg-color);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--bg-color);
+  outline: 0 none;
+} */
+
+
+//IDs for NB-Gmail
+const CLIENT_ID = '398497489262-ks7el0qom9fh5puc322rhklgp8jbl5ss.apps.googleusercontent.com';
+const CLIENT_SECRET = '0nmKM1tG88ByU3Tk6-I1-WGa';
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = `1//04hWddUITYDneCgYIARAAGAQSNwF-L9IrnUhFUjdUHfYTJwhFtuWWZU5EAFxERGlwW9FhxGiI2MtevLBEHfbTBuPBRT2ilBojHiE`;
+
+
+//IDs for jakinfosol@gmail.com
+const CLIENT_ID = `1042470307996-b5lkmq508j578b82g87kipuo2tp6fpcm.apps.googleusercontent.com`;
+const CLIENT_SECRET = `zj2SAZAysaq79fW2JoOUeQnT`;
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = `1//04qrHBLzTpnVJCgYIARAAGAQSNwF-L9IrtjGy-31DpBHPvqipD-tWBytIfPV-jvI1LAJJOqkm_T97KUAy7Gv1xfTR1J0UfJqgWw0`;
+
+
+a {
+  background-color: red;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}

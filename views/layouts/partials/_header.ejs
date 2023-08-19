@@ -1,0 +1,72 @@
+<!-- Navbar -->
+
+<!-- <div class="contact-details"> -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+   <div class="container-fluid">
+      <a class="navbar-brand" href="/dashboard">
+         <img class="align-middle" src="/logos/sneha_logo_e.png" alt="" height="75" width="110" />
+         <span class="display-6 align-middle"></span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navMenu">
+
+            <!-- dynamic menu from data passed -->
+            <% if(typeof(menu) !='undefined' ) { %>
+               <% locals.menu.forEach(function(item) { %>
+                  <% if (item.submenu) { %>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                           <%= item.name %>
+                        </a>
+                        <ul class="dropdown-menu">
+                           <% item.submenu.forEach(function(subitem) { %>
+                              <li><a class="dropdown-item" href="<%= subitem.url %>">
+                                    <%= subitem.name %>
+                                 </a></li>
+                              <% }); %>
+                        </ul>
+                     </li>
+                     <% } else { %>
+                        <li class="nav-item">
+                           <a class="nav-link" href="<%= item.url %>">
+                              <%= item.name %>
+                           </a>
+                        </li>
+                        <% } %>
+                           <% }); %>
+                              <% } %>
+                                 <% if(locals.isAuthenticated===true) { %>
+                                    <li class="nav-item dropdown">
+                                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                          data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i class="bi bi-person-circle"></i>
+                                          <%= typeof userDataName !='undefined' ? userDataName.name : '' %>
+                                       </a>
+                                       <ul class="dropdown-menu">
+                                          <!-- <li>
+                        <a class="dropdown-item" href="/users/profile"><i class="bi bi-person-lines-fill"></i> Profile</a>
+                     </li> -->
+                                          <li>
+                                             <a class="dropdown-item" href="/users/logout"><i
+                                                   class="bi bi-box-arrow-right"></i> Logout</a>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <% } else { %>
+                                       <li class="nav-item">
+                                          <a class="nav-link" href="/users/login"><i
+                                                class="bi bi-box-arrow-in-right"></i> Login</a>
+                                       </li>
+                                       <li class="nav-item">
+                                          <a class="nav-link" href="/users/register"><i
+                                                class="bi bi-journal-arrow-down"></i> Register</a>
+                                       </li>
+                                       <% } %>
+         </ul>
+      </div>
+   </div>
+</nav>

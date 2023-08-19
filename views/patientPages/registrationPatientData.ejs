@@ -1,0 +1,180 @@
+<%- include('../layouts/partials/messages.ejs') %>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body shadow">
+                <h2 class="text-center mb-3">
+                    <i class="bi bi-box-arrow-in-right"></i>Patient Report
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body" style="height: 100%">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar"
+                    style=" position: relative;   overflow: auto;   display: block;  ">
+                    <nav class="navbar navbar-light ">
+                        <div class="container-fluid">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+                                <a href="javascript:history.back()" type="submit" class="btn btn-secondary"> <i
+                                        class="bi bi-arrow-left"></i></a>
+                                <a href="/patient/register" type="submit" class="btn btn-success"> <i
+                                        class="bi bi-person-plus-fill"></i> </a>
+                                <button id="export" class="btn btn-primary"> <i class="bi bi-download"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div class="d-flex">
+                                <input class="form-control me-2" id="search" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button class="btn btn-warning" type="reset" id="clear-button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-bordered border-dark table-hover mt-2 " id="table">
+                        <thead class="text-center">
+                            <tr id="regtable">
+                                <th scope="col">ACTION</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">AGE</th>
+                                <th scope="col">GENDER</th>
+                                <th scope="col">REG_DATE</th>
+                                <th scope="col">REG_ID</th>
+                                <th scope="col">ADHAR</th>
+                                <!-- <th scope="col">IMAGE</th> -->
+                                <th scope="col">REF_BY</th>
+                                <th scope="col">LOC_ADD</th>
+                                <th scope="col">LOC_CITY</th>
+                                <th scope="col">LOC_LANDMARK</th>
+                                <th scope="col">LOC_PHONE_1</th>
+                                <th scope="col">RELIGION</th>
+                                <th scope="col">Language</th>
+                                <th scope="col">PATIENT TYPE</th>
+                                <th scope="col">ACTIVE</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% registerPatientTable.reverse() %>
+                                <% if(registerPatientTable.length!=0) { var i=1;
+                                    registerPatientTable.forEach(function(data){ %>
+
+                                    <tr id="regrowdata" class="text-center">
+
+                                        <td>
+                                            <a href="/patient/edit/<%= data.id %>" class="btn btn-success btn-sm"
+                                                style="width: 25px;padding: 2px;"><i class="bi bi-pencil"></i></a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal<%= data.id %>"
+                                                style="width: 25px;padding: 2px;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal<%= data.id %>"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Delete ?
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <h6 class="modal-body">
+                                                            Are you sure you want to delete <%= data.patient_name%> ?
+                                                        </h6>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <form action="/patient/registerTable/<%=data.id%>/delete"
+                                                                method="post">
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    id="delete">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%=data.id %>
+                                        </td>
+                                        <td>
+                                            <%=data.patient_name %>
+                                        </td>
+                                        <td>
+                                            <%= data.age %>
+                                        </td>
+                                        <td>
+                                            <%=data.gender %>
+                                        </td>
+
+                                        <td>
+                                            <%= moment(data.reg_date).format('YYYY-MM-DD')%>
+                                        </td>
+                                        <td>
+                                            <%=data.reg_id %>
+                                        </td>
+                                        <td>
+                                            <%=data.aadhar %>
+                                        </td>
+                                        <!-- <td>
+                                    <%=data.pic_filename %>
+                                </td> -->
+                                        <td>
+                                            <%=data.ref_by %>
+                                        </td>
+                                        <td>
+                                            <%=data.local_address %>
+                                        </td>
+                                        <td>
+                                            <%=data.local_city %>
+                                        </td>
+                                        <td>
+                                            <%=data.local_landmark %>
+                                        </td>
+                                        <td>
+                                            <%=data.local_phone1 %>
+                                        </td>
+                                        <td>
+                                            <%=data.religion %>
+                                        </td>
+                                        <td>
+                                            <%=data.language %>
+                                        </td>
+                                        <td>
+                                            <%=data.patient_type_id %>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="checkbox" value="" id="isactive"
+                                                <%=data.isActive ? "checked" : "" %> disabled>
+                                        </td>
+
+                                    </tr>
+                        </tbody>
+                        <% i++; }) %>
+                            <% } else{ %>
+                                <tr class="text-center " id="noRecordFoundRow">
+                                    <td colspan="17">No Record Found</td>
+                                </tr>
+                                <% } %>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
